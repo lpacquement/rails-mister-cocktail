@@ -3,8 +3,15 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1><%= @cocktail.name %></h1>
       <% @cocktail.doses.each do |dose| %>
-        <%= dose.description %> <%= dose.ingredient.name %>
-        <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
+        <div>
+          <%= dose.description %> <%= dose.ingredient.name %>
+         <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
+        </div>
+        <div>
+          <% if @cocktail.photo? %>
+            <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
+          <% end %>
+        </div>
       <% end %>
       <%= link_to "Add an ingredient to this cocktail", new_cocktail_dose_path(@cocktail) %>
       | <%= link_to 'Back', cocktails_path %>
