@@ -9,5 +9,5 @@
 url = Nokogiri::HTML(open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"))
 seeds = JSON.parse(url)
 seeds['drinks'].each do |record|
-  ingredient.create!(name: record["strIngredient1"])
+  Ingredient.create!(name: record["strIngredient1"])
 end
